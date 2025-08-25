@@ -1,24 +1,23 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Guard : MonoBehaviour
 {
-    private enum State { Patrol, Chase, Attack };
+    protected enum State { Patrol, Chase, Attack, Wait };
 
-    [SerializeField] private Transform objective;
-    [SerializeField] private Transform[] wayPoints;
-    [SerializeField] private float viewAngle = 60.0f;
-    [SerializeField] private float viewRadius = 10.0f;
+    [SerializeField] protected Transform objective;
+    [SerializeField] protected Transform[] wayPoints;
+    [SerializeField] protected float viewAngle = 60.0f;
+    [SerializeField] protected float viewRadius = 10.0f;
     [SerializeField] private float attackDistance = 2f;
     [SerializeField] private float attackCooldown = 1.5f;
     [SerializeField] private float loseSightTime = 1f;
-    [SerializeField] private State currentState = State.Patrol;
+    [SerializeField] protected State currentState = State.Patrol;
     private float loseSightTimer = 0;
     private float lastAttackTime = 0;
-    private int wpIndex = 0;
-    private Animator animator => GetComponentInChildren<Animator>();
-    private NavMeshAgent agent => GetComponent<NavMeshAgent>();
+    protected int wpIndex = 0;
+    protected Animator animator => GetComponentInChildren<Animator>();
+    protected NavMeshAgent agent => GetComponent<NavMeshAgent>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -42,6 +41,8 @@ public class Guard : MonoBehaviour
                 break;
             case State.Attack:
                 Attack();
+                break;
+            case State.Wait:
                 break;
             default:
                 break;
@@ -119,7 +120,7 @@ public class Guard : MonoBehaviour
         Gizmos.DrawRay(transform.position + Vector3.up, rightBoundary * viewRadius);
     }
 
-    bool LookForObjective()
+    protected bool LookForObjective()
     {
         if (objective == null)
             return false;
@@ -139,5 +140,10 @@ public class Guard : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void SetDestination(Vector3 destination)
+    {
+        agent.SetDestination(destination);
     }
 }

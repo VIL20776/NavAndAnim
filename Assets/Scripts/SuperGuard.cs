@@ -1,12 +1,8 @@
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Events;
 
 public class SuperGuard : Guard
 {
-    [SerializeField] UnityEvent gameOverEvent;
-
-
     // Update is called once per frame
     void Update()
     {
@@ -79,10 +75,17 @@ public class SuperGuard : Guard
 
         if (Time.time >= lastAttackTime + attackCooldown && !LookForObjective())
         {
-            gameOverEvent?.Invoke();
+            float distance = Vector3.Distance(transform.position, objective.position);
+            if (distance < attackDistance)
+            {
+                gameOverEvent?.Invoke();
+            }
+            else
+            {
 
-            animator.SetBool("IsAttacking", false);
-            currentState = State.Chase;
+                animator.SetBool("IsAttacking", false);
+                currentState = State.Chase;
+            }
         }
     }
 

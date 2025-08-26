@@ -132,6 +132,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paladin WProp J Nordstrom 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1051571768989249988, guid: ac70700e9026b39c7acf56d9f4f1ade4, type: 3}
+      propertyPath: m_TagString
+      value: Sword
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: ac70700e9026b39c7acf56d9f4f1ade4, type: 3}
       propertyPath: m_Controller
       value: 
@@ -147,8 +151,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1051571768989249988, guid: ac70700e9026b39c7acf56d9f4f1ade4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5821248352734694823}
   m_SourcePrefab: {fileID: 100100000, guid: ac70700e9026b39c7acf56d9f4f1ade4, type: 3}
+--- !u!1 &5991714350894080012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1051571768989249988, guid: ac70700e9026b39c7acf56d9f4f1ade4, type: 3}
+  m_PrefabInstance: {fileID: 6751237270839759304}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &5821248352734694823
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991714350894080012}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.30037224, y: 0.09195961, z: 1.014206}
+  m_Center: {x: 0.796285, y: 1.4112254, z: 0.2454784}
 --- !u!4 &6501948792092587555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ac70700e9026b39c7acf56d9f4f1ade4, type: 3}

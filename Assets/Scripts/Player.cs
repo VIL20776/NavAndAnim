@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private int nextScene = 1;
     private NavMeshAgent agent => GetComponent<NavMeshAgent>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,10 +27,9 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        print("Collision");
         if (collision.gameObject.CompareTag("Finish"))
         {
-            SceneManager.LoadScene("SampleScene 1");
+            SceneManager.LoadScene(nextScene);
         }
     }
 }

@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class Guard : MonoBehaviour
 {
     protected enum State { Patrol, Chase, Attack, Wait };
 
+    [SerializeField] protected UnityEvent gameOverEvent;
     [SerializeField] protected Transform objective;
     [SerializeField] protected Transform[] wayPoints;
     [SerializeField] protected float viewAngle = 60.0f;
@@ -71,7 +73,10 @@ public class Guard : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, objective.position);
         if (distance < attackDistance)
+        {
+            lastAttackTime = Time.time;
             currentState = State.Attack;
+        }
 
         if (!LookForObjective())
         {
@@ -92,18 +97,20 @@ public class Guard : MonoBehaviour
     {
         Vector3 lookObjective = new Vector3(objective.position.x, 0, objective.position.z);
         transform.LookAt(lookObjective);
-        agent.stoppingDistance = 2f;
+
+        agent.speed = 0;
+        animator.SetBool("IsAttacking", true);
 
         if (Time.time >= lastAttackTime + attackCooldown)
         {
-            animator.SetBool("IsAttacking", true);
-            lastAttackTime = Time.time;
-
-            //TODO
-
             float distance = Vector3.Distance(transform.position, objective.position);
-            if (distance >= attackDistance)
+            if (distance < attackDistance)
             {
+                gameOverEvent?.Invoke();
+            }
+            else
+            {
+
                 animator.SetBool("IsAttacking", false);
                 currentState = State.Chase;
             }

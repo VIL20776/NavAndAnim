@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        print("Collision");
         if (collision.gameObject.CompareTag("Finish"))
         {
             SceneManager.LoadScene("SampleScene 1");

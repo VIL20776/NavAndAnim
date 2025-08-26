@@ -9,12 +9,12 @@ public class Guard : MonoBehaviour
     [SerializeField] protected Transform[] wayPoints;
     [SerializeField] protected float viewAngle = 60.0f;
     [SerializeField] protected float viewRadius = 10.0f;
-    [SerializeField] private float attackDistance = 2f;
-    [SerializeField] private float attackCooldown = 1.5f;
-    [SerializeField] private float loseSightTime = 1f;
+    [SerializeField] protected float attackDistance = 2f;
+    [SerializeField] protected float attackCooldown = 1.5f;
+    [SerializeField] protected float loseSightTime = 1f;
     [SerializeField] protected State currentState = State.Patrol;
-    private float loseSightTimer = 0;
-    private float lastAttackTime = 0;
+    protected float loseSightTimer = 0;
+    protected float lastAttackTime = 0;
     protected int wpIndex = 0;
     protected Animator animator => GetComponentInChildren<Animator>();
     protected NavMeshAgent agent => GetComponent<NavMeshAgent>();
